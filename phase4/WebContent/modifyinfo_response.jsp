@@ -27,7 +27,7 @@
 		
 		String loginId = request.getParameter("login-id1");
 		
-		
+		 
 		String update_column = request.getParameter("info");
 		String update_value = request.getParameter("modifiedvalue");
 

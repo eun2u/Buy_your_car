@@ -41,7 +41,7 @@
 		}
 	
 
-		
+		 
 		sql = "DELETE FROM ACCOUNT WHERE Id = '" + loginId + "' ";
 		//System.out.println(sql);
 		

@@ -22,7 +22,7 @@
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		conn = DriverManager.getConnection(url, user, pass);
 
-		String sql = " ";
+		String sql = " "; 
 
 		String loginId = request.getParameter("login-id");
 		String loginpw = request.getParameter("login-password");

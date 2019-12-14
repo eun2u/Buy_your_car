@@ -92,7 +92,7 @@
 					+SFname +","+SLname+","+ SManager+","+ SID+"," +SPassword+","+SAddress+","+
 					SPhonenumber+","+ SBirthday+"," + SSex+"," +SJob+")";
 
-		//	System.out.println(sql);
+		//	System.out.println(sql); 
 			pstmt=conn.prepareStatement(sql);
 			int res = pstmt.executeUpdate(sql);
 			if(res==1)
