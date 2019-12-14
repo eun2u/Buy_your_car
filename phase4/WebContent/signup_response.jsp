@@ -98,7 +98,11 @@
 			if(res==1)
 				System.out.println("회원가입이 완료되었습니다.");
 
-			conn.commit();			
+			conn.commit();		
+			
+			pstmt.close();
+			conn.close();
+			rs.close();
 		}catch(SQLException ex2) {
 			System.err.println("sql error = " + ex2.getMessage());
 			System.exit(1);

@@ -1,0 +1,62 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="modifyinfo.css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<center><h1>MyPage</h1></center>
+
+<div class="col-sm-2">
+    <nav class="nav-sidebar">
+		<ul class="nav tabs">
+          <li><a href="#tab1" onClick="$('#tab1').show(); $('#tab2').hide(); $('#tab3').hide();">Modify Info</a></li>
+          <li><a href="#tab2" onClick="$('#tab1').hide(); $('#tab2').show(); $('#tab3').hide();">My Order</a></li>
+          <li><a href="#tab3" onClick="$('#tab1').hide(); $('#tab2').hide(); $('#tab3').show();">Drop Account</a></li>          
+		</ul>
+	</nav>
+</div>
+<!-- tab content -->
+
+<div class="tab-pane text-style" id="tab1">
+  <h2>Modify Info</h2>
+  <form action="modifyinfo_response.jsp" method = "POST">
+  		id:
+  		<input type="text" name = "login-id1"/> 	
+  		<hr>
+		info: 
+		<select name="info">
+			<option value="fname" selected >Fname</option>
+			<option value="lname">Lname</option>
+			<option value="mgr">Manager(0 or 1)</option>
+			<option value="pw">Password</option>	
+			<option value="address">Address</option>	
+			<option value="pnumber">Phonenumber(010-xxxx-xxxx)</option>	
+			<option value="bday">Birthday(yy/mm/dd)</option>	
+			<option value="sex">Sex(F or M)</option>	
+			<option value="job">Job</option>	
+		</select>
+		Value: <input type="text" name = "modifiedvalue"/> 		
+		<input type="submit" value="Submit" />
+    </form>
+  <hr>
+</div>
+
+
+
+<div class="tab-pane text-style" id="tab2" style="display:none;">
+  <h2>My order</h2>
+  <form action="myorder.jsp" method = "POST">
+    id:<input type="text" name = "login-id2"/> 	
+    <hr>
+	<input type="submit" value="Submit" /> 
+  </form>   
+</div>
+
+
+<div class="tab-pane text-style" id="tab3" style="display:none;">
+  <h2>Drop Account</h2>
+  <form action="dropaccount.jsp" method = "POST">
+    id:<input type="text" name = "login-id3"/> 	
+    <hr>
+	<input type="submit" value="Are you sure to drop account?" /> 
+  </form>   
+</div>

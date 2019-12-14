@@ -41,12 +41,12 @@
 		}
 		else{
 			rs.close();
+			pstmt.close();
 			conn.commit();
 
 			System.out.println("로그인이 완료되었습니다.");
 		}
-%>
-
+	%>	
 
 </body>
 </html>

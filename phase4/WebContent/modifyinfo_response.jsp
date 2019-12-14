@@ -24,8 +24,8 @@
 
 		String sql = " ";
 
-		//logid를 어떻게 받아오지?
-		String loginId = request.getParameter("loginid");
+		
+		String loginId = request.getParameter("login-id1");
 		
 		
 		String update_column = request.getParameter("info");
@@ -37,18 +37,23 @@
 					update_value+"' WHERE Id = '"+loginId+ "'";
 
 			System.out.println(sql);
-			
 			pstmt=conn.prepareStatement(sql);
-			int res=pstmt.executeUpdate();
+			int res = pstmt.executeUpdate(sql);
 			if(res==1)
 				System.out.println("회원정보가 변경되었습니다.");
 
-			conn.commit();			
+			conn.commit();
+			
+			pstmt.close();
+			conn.close();
+			
 		}catch(SQLException ex2) {
 			System.err.println("sql error = " + ex2.getMessage());
 			System.exit(1);
 		}
+		
 
+		
 %>
 
 
