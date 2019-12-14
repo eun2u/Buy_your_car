@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Register New Car</title>
+</head>
+<body>
+	<h3>Register a new car for sale
+		<br />
+		Please enter the information of the vehicle sales you wish to register.
+	</h3>
+	
+	<form action = "RegisterNewCar.jsp" method = "POST">
+		<b>Model year:</b>
+		<br />
+		Year <input type="text" name="Year" style="width:60px;height:20px;">
+		   Month <select name="Month">
+					<option value="1" selected>1</option>
+					<option value="2" >2</option>
+					<option value="3" >3</option>
+					<option value="4" >4</option>
+					<option value="5" >5</option>
+					<option value="6" >6</option>
+					<option value="7" >7</option>
+					<option value="8" >8</option>
+					<option value="9" >9</option>
+					<option value="10" >10</option>
+					<option value="11" >11</option>
+					<option value="12" >12</option>
+				</select> 
+		   Day <input type="text" name="Day" style="width:60px;height:20px;">	  
+		<br /> <br />
+		<b>Mileage: </b> <input type="text" name="NewMileage" style="width:60px;height:20px;"> km
+		<br /> 	<br />
+		<b>Price: </b> <input type="text" name="NewPrice" style="width:60px;height:20px;"> 만원
+		<br /> <br />
+		<b>Vehicle Number(XXXX): </b> <input type="text" name="NewVnumber" style="width:60px;height:20px;">
+		<br /> <br />
+		<b>Make: </b> <select name="NewMake" >
+						<option value="001">Hyundai</option>
+						<option value="002">Renault_Samsung</option>
+						<option value="003">Kia</option>
+						<option value="004">Chevrolet</option>
+						<option value="005">BMW</option>
+						<option value="006">Lexus</option>
+						<option value="007">Benz</option>
+						<option value="008">Volkswagen</option>
+					   </select>				   
+		<br /> <br />
+		<b>Model: </b> <input type = "text" name="NewModel" style="width:80px;height:20px;">	   
+		<br /> <br />
+		<b>Detailed Model: </b> <input type="text" name="NewDetailed" style="width:150px;height:20px;">
+		<br /> <br />
+		<b>Color: </b> 
+		<br />
+		color1 <select name="NewColor1">
+					<option value="Red" selected>Red</option>
+					<option value="Blue" >Blue</option>
+					<option value="Yellow" >Yellow</option>
+					<option value="Gray" >Gray</option>
+					<option value="White" >White</option>
+					<option value="Black" >Black</option>
+					<option value="Pink" >Pink</option>
+				</select>
+		color2 <select name="NewColor2">
+					<option value="null" selected>--------</option>
+					<option value="Red">Red</option>
+					<option value="Blue" >Blue</option>
+					<option value="Yellow" >Yellow</option>
+					<option value="Gray" >Gray</option>
+					<option value="White" >White</option>
+					<option value="Black" >Black</option>
+					<option value="Pink" >Pink</option>
+				</select>
+		<br /> <br />
+		<b>Engine: </b> <select name="Newengine">
+				<option value="1500" selected>1500</option>
+				<option value="2000">2000</option>
+				<option value="3000">3000</option>
+				<option value="2500">2500</option>
+				<option value="1000">1000</option>
+			</select> 
+		<br /> <br />
+		<b>Fuel: </b> 
+		<br /> 
+		fuel1 <select name="Newfuel1">
+				<option value="001" selected>Gasoline</option>
+				<option value="002">Diesel</option>
+				<option value="003">Electric</option>
+				<option value="004">LPG</option>
+				<option value="005">CNG</option>
+			</select> 
+		fuel2 <select name="Newfuel2">
+				<option value="null" selected>--------</option>
+				<option value="003">Electric</option>
+			</select>
+		<br /> <br />
+		<b>Category: </b> <select name="NewCate">
+				<option value="1" selected>Compact</option>
+				<option value="2">RV</option>
+				<option value="3">Light-Weight</option>
+				<option value="4">Midsize</option>
+				<option value="5">Full-size</option>
+				<option value="6">SUV</option>
+		</select>
+		<br /><br />
+		<b>Transmission</b> <select name="NewTrans">
+				<option value="1" selected>Automatic</option>
+				<option value="2">Semi-Auto</option>
+				<option value="3">Manual</option>
+				<option value="4">CVT</option>
+		</select>
+		<br /> <br />
+		<input type="reset" value="Reset" 
+				style="color:white;background:black;font-size:1em; border-radius:0.5em; padding:5px 20px;">
+		<input type="submit" value="Submit" 
+				style="color:white;background:black;font-size:1em; border-radius:0.5em; padding:5px 20px;"/>
+	</form>
+</body>
+</html>
