@@ -39,7 +39,7 @@
 			System.out.println("관리자계정은 최소 1개 이상 있어야 합니다. ");
 			System.exit(0);
 		}
-	
+	 
 
 		 
 		sql = "DELETE FROM ACCOUNT WHERE Id = '" + loginId + "' ";
