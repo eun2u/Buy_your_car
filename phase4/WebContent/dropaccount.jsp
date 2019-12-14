@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>login_response</title>
+<title>drop account</title>
 </head>
 <body>
 	<%
@@ -25,27 +25,34 @@
 		String sql = " ";
 
 		String loginId = request.getParameter("login-id");
-		String loginpw = request.getParameter("login-password");
 
-		System.out.println(loginId + " " + loginpw);
+		sql = "select count(*) " + "from account " + "where manager=1 ";
+		pstmt = conn.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+	
+		int mgrcount = 1;
+		if (rs.next())
+			mgrcount = rs.getInt(1);
 
-		//sql = "SELECT * from ACCOUNT WHERE Id ='" + loginId + "' AND Password='" + loginpw + "'";
+		if (mgrcount == 0) {
+			System.out.println("관리자계정은 최소 1개 이상 있어야 합니다. ");
+			System.exit(0);
+		}
 
-		sql="select * from account where id='"+ loginId + "' and password='"+ loginpw +"'";
-		System.out.println(sql);
+		sql = "DELETE FROM ACCOUNT WHERE Id = '" + loginId + "'";
+		pstmt = conn.prepareStatement(sql);
+		int res = pstmt.executeUpdate(sql);
 		
-		pstmt=conn.prepareStatement(sql);
-		rs=pstmt.executeQuery();
-		if (!rs.next()) {
-			System.out.println("Id나 Password가 잘못되었습니다. 다시 입력하세요");
+		System.out.println(sql);
+		if (res != 0) {
+			System.out.println("회원 탈퇴를 하였습니다.");
+			System.out.println("application을 종료합니다");
+			System.exit(0);
 		}
-		else{
-			rs.close();
-			conn.commit();
 
-			System.out.println("로그인이 완료되었습니다.");
-		}
-%>
+		rs.close();
+		conn.commit();
+	%>
 
 
 </body>

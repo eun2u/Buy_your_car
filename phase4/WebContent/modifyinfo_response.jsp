@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>login_response</title>
+<title>modify_info</title>
 </head>
 <body>
 	<%
@@ -24,27 +24,31 @@
 
 		String sql = " ";
 
-		String loginId = request.getParameter("login-id");
-		String loginpw = request.getParameter("login-password");
-
-		System.out.println(loginId + " " + loginpw);
-
-		//sql = "SELECT * from ACCOUNT WHERE Id ='" + loginId + "' AND Password='" + loginpw + "'";
-
-		sql="select * from account where id='"+ loginId + "' and password='"+ loginpw +"'";
-		System.out.println(sql);
+		//logid를 어떻게 받아오지?
+		String loginId = request.getParameter("loginid");
 		
-		pstmt=conn.prepareStatement(sql);
-		rs=pstmt.executeQuery();
-		if (!rs.next()) {
-			System.out.println("Id나 Password가 잘못되었습니다. 다시 입력하세요");
-		}
-		else{
-			rs.close();
-			conn.commit();
+		
+		String update_column = request.getParameter("info");
+		String update_value = request.getParameter("modifiedvalue");
 
-			System.out.println("로그인이 완료되었습니다.");
+	
+		try {
+			sql = "UPDATE ACCOUNT SET "+update_column+" = '"+
+					update_value+"' WHERE Id = '"+loginId+ "'";
+
+			System.out.println(sql);
+			
+			pstmt=conn.prepareStatement(sql);
+			int res=pstmt.executeUpdate();
+			if(res==1)
+				System.out.println("회원정보가 변경되었습니다.");
+
+			conn.commit();			
+		}catch(SQLException ex2) {
+			System.err.println("sql error = " + ex2.getMessage());
+			System.exit(1);
 		}
+
 %>
 
 
