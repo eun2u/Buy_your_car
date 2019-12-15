@@ -115,6 +115,7 @@
 	%>
 	<script>
 	alert("새로운 차량이 등록되었습니다.");
+	document.location.href="index_manager.html";
 	</script>
 </body>
 </html>
