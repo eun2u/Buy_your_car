@@ -166,7 +166,7 @@
 			conn.commit();
 			System.out.println(sql);
 			System.out.println(a+"행이 변경되었습니다.");
-		}
+		} 
 		
 		if(!modiTrans.equals("null")){
 			sql = "UPDATE VEHICLE SET Tcode = "+modiTrans+" WHERE Vnumber = '"+modifyVnum+"'";

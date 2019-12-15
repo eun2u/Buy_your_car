@@ -95,7 +95,7 @@
 					//System.out.println("색상2, 연료2: "+sql);
 				}
 			}
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql); 
 			int a = pstmt.executeUpdate();
 			conn.commit();
 			
