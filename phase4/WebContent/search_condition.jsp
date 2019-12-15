@@ -5,10 +5,13 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Search_Total_Vehicle</title>
+<title>Search_By_Condition</title>
 </head>
 <body>
-<%
+
+
+
+	<%
 		String serverIP = "localhost";
 		String strSID = "orcl";
 		String portNum = "1521";
@@ -21,29 +24,108 @@
 		ResultSet rs;
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		conn = DriverManager.getConnection(url, user, pass);
+		String sql = "";
 
-		String sql = " ";
- 
 		try {
-			
+
 			conn.setAutoCommit(false);
+		
+			String modiYear = null;
+			modiYear = request.getParameter("modiYear");
+			String modiMonth = null;
+			modiMonth = request.getParameter("modiMonth");
+			String modiDay = null;
+			modiDay = request.getParameter("Day");
+			String searchdate = null;
 
+			if ((modiYear != null) && (!modiMonth.equals("null")) && (modiDay != null))
+				searchdate = modiYear + "-" + modiMonth + "-" + modiDay;
 
-			sql = "SELECT * FROM VEHICLE WHERE Ac_id IS NULL AND Notopen = 1 ORDER BY Vnumber";
-					
-			pstmt=conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
-			 
-%>
-		<h4>----A list of total vehicle----</h4>	
-<%	
-			out.println("<table border=\"1\">");
-			ResultSetMetaData rsmd=rs.getMetaData();
-			int cnt=rsmd.getColumnCount();
-			for(int i=1;i<=cnt-2;i++){
-				out.println("<th>"+ rsmd.getColumnName(i)+"</th>");
+			//String modiMile = "null";
+			String searchmileage = request.getParameter("modiMile");
+			//String modiPrice = "null";
+			String searchprice = request.getParameter("modiPrice");
+		
+			String searchcolor1 = request.getParameter("modiColor1");
+			String searchcolor2 = request.getParameter("modiColor2");
+			String searchengine = request.getParameter("modiEngine");
+		
+			String searchfuel1 = request.getParameter("modiFuel1");
+			String searchfuel2 = request.getParameter("modiFuel2");
+			String searchcate = request.getParameter("modiCate");
+			String searchtrans = request.getParameter("modiTrans");
+
+			StringBuffer sb = new StringBuffer();
+			sb.append("SELECT V.Model_year, V.Mileage, V.Price, V.Vnumber, V.Make_code, V.Model_num, V.Dm_num, V.Cname1, V.Cname2, V.Engine_amount, V.Fcode1, V.Fcode2, V.Category_code, V.Tcode, V.Ac_id ,V.notopen  FROM VEHICLE V WHERE V.Ac_id IS NULL AND V.Notopen = 1");
+
+			if (searchdate != null) {
+				System.out.println(searchdate);
+				//String searchdateString = new SimpleDateFormat("yyyy-mm-dd").format(searchdate);
+				//sb.append(" AND V.Model_year >= TO_DATE('"+ searchdateString +"', 'yyyy-mm-dd')");
+				sb.append(" AND V.Model_year >= TO_DATE('" + searchdate + "', 'yyyy-mm-dd')");
 			}
+
+			if (!searchmileage.equals("")) {
+				sb.append(" AND V.Mileage <= " + searchmileage);
+			}
+
+			if (!searchprice.equals("")) {
+				
+				sb.append(" AND V.Price <= " + searchprice);
+			}
+
+			if (!searchcolor1.equals("null")) {
+				System.out.println(searchcolor1);
+				sb.append(" intersect SELECT V1.Model_year, V1.Mileage, V1.Price, V1.Vnumber, V1.Make_code, V1.Model_num, V1.Dm_num, V1.Cname1, V1.Cname2, V1.Engine_amount, V1.Fcode1, V1.Fcode2, V1.Category_code, V1.Tcode, V1.Ac_id ,V1.notopen  FROM VEHICLE V1 WHERE V1.Cname1 = '" + searchcolor1
+						+ "' OR V1.Cname2 = '" + searchcolor1 + "'");
+			}
+
+			if (!searchcolor2.equals("null")) {
+				sb.append(" OR V1.Cname1 = '" + searchcolor2 + "' OR V1.Cname2 = '" + searchcolor2 + "'");
+			}
+
+			if (!searchengine.equals("null")) {
+				sb.append(" intersect SELECT V2.Model_year, V2.Mileage, V2.Price, V2.Vnumber, V2.Make_code, V2.Model_num, V2.Dm_num, V2.Cname1, V2.Cname2, V2.Engine_amount, V2.Fcode1, V2.Fcode2, V2.Category_code, V2.Tcode, V2.Ac_id ,V2.notopen  FROM VEHICLE V2 WHERE V2.Engine_amount >= " + searchengine);
+			}
+
+			if (!searchfuel1.equals("null")) {
+				sb.append(
+						" intersect SELECT V3.Model_year, V3.Mileage, V3.Price, V3.Vnumber, V3.Make_code, V3.Model_num, V3.Dm_num, V3.Cname1, V3.Cname2, V3.Engine_amount, V3.Fcode1, V3.Fcode2, V3.Category_code, V3.Tcode, V3.Ac_id, V3.notopen  FROM VEHICLE V3 JOIN FUEL_NAME F ON (V3.Fcode1=F.Fcode)or(V3.Fcode2=F.Fcode) WHERE F.Fcode = '"
+								+ searchfuel1 + "'");
+			}
+
+			if (!searchfuel2.equals("null")) {
+				sb.append(" OR F.Fcode = '" + searchfuel2 + "'");
+			}
+
+			if (!searchcate.equals("null")) {
+				sb.append(
+						" intersect SELECT V4.Model_year, V4.Mileage, V4.Price, V4.Vnumber, V4.Make_code, V4.Model_num, V4.Dm_num, V4.Cname1, V4.Cname2, V4.Engine_amount, V4.Fcode1, V4.Fcode2, V4.Category_code, V4.Tcode, V4.Ac_id, V4.notopen FROM VEHICLE V4 JOIN CATEGORY_NAME C ON V4.Category_code=C.Catecode WHERE C.Catecode = '"
+								+ searchcate + "'");
+			}
+
+			if (!searchtrans.equals("null")) {
+				
+				sb.append(
+						" intersect SELECT V5.Model_year, V5.Mileage, V5.Price, V5.Vnumber, V5.Make_code, V5.Model_num, V5.Dm_num, V5.Cname1, V5.Cname2, V5.Engine_amount, V5.Fcode1, V5.Fcode2, V5.Category_code, V5.Tcode, V5.Ac_id, V5.notopen FROM VEHICLE V5 JOIN TRANSMISSION T ON V5.Tcode=T.Transcode WHERE T.Transcode = '"
+								+ searchtrans + "'");
+			}
+
+			sql = sb.toString();
+			System.out.println(sql);
+	%>
+	<h4>----A list of the vehicles that meet the conditions----</h4>
+	<%
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
 			
+			out.println("<table border=\"1\">");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int cnt = rsmd.getColumnCount();
+			for (int i = 1; i <= cnt - 2; i++) {
+				out.println("<th>" + rsmd.getColumnName(i) + "</th>");
+			}
+
 			String Make_name = null;
 			String Model_name = null;
 			String DM_name = null;
@@ -52,8 +134,8 @@
 			String Catename = null;
 			String Transname = null;
 			int i = 0;
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				Date Model_year = rs.getDate(1);
 				int Mileage = rs.getInt(2);
 				int Price = rs.getInt(3);
@@ -68,8 +150,7 @@
 				String Fcode2 = rs.getString(12);
 				int Category_code = rs.getInt(13);
 				int Tcode = rs.getInt(14);
-				
-				
+
 				// Transmission
 				if (Tcode == 1)
 					Transname = "Automatic";
@@ -106,7 +187,7 @@
 				else if (Fcode1.equals("005"))
 					Fuel1 = "CNG";
 
-				if (Fcode2 !=null) {
+				if (Fcode2 != null) {
 					if (Fcode2.equals("001"))
 						Fuel2 = "Gasoline";
 					else if (Fcode2.equals("002"))
@@ -467,81 +548,67 @@
 
 				}
 
-				
-
-
-
-
-				
 				out.println("<tr>");
-				out.println("<td>"+ Model_year+"</td>");
-				out.println("<td>"+ Mileage+"</td>");
-				out.println("<td>"+ Price+"</td>");
-				out.println("<td>"+ Vnumber+"</td>");
-				out.println("<td>"+ Make_name+"</td>");
-				out.println("<td>"+ Model_name+"</td>");
-				out.println("<td>"+ DM_name+"</td>");
-				
-				
-				if (Color2==null){
-					out.println("<td>"+ Color1+"</td>");
-					out.println("<td>"+ "-"+"</td>");
-					out.println("<td>"+ Engine_amount+"</td>");
-		
+				out.println("<td>" + Model_year + "</td>");
+				out.println("<td>" + Mileage + "</td>");
+				out.println("<td>" + Price + "</td>");
+				out.println("<td>" + Vnumber + "</td>");
+				out.println("<td>" + Make_name + "</td>");
+				out.println("<td>" + Model_name + "</td>");
+				out.println("<td>" + DM_name + "</td>");
+
+				if (Color2 == null) {
+					out.println("<td>" + Color1 + "</td>");
+					out.println("<td>" + "-" + "</td>");
+					out.println("<td>" + Engine_amount + "</td>");
+
+				} else {
+					out.println("<td>" + Color1 + "</td>");
+					out.println("<td>" + Color2 + "</td>");
+					out.println("<td>" + Engine_amount + "</td>");
+
 				}
-				else{
-					out.println("<td>"+ Color1+"</td>");
-					out.println("<td>"+ Color2+"</td>");
-					out.println("<td>"+ Engine_amount+"</td>");
-				 
-				}
-				if (Fcode2==null){
-					out.println("<td>"+ Fuel1+"</td>");
-					out.println("<td>"+ "-"+"</td>");
-					out.println("<td>"+ Catename+"</td>");
-					out.println("<td>"+ Transname+"</td>");
-				
-				}
-				else{
-					out.println("<td>"+ Fuel1+"</td>");
-					out.println("<td>"+ Fuel2+"</td>");
-					out.println("<td>"+ Catename+"</td>");
-					out.println("<td>"+ Transname+"</td>");
-					
+				if (Fcode2 == null) {
+					out.println("<td>" + Fuel1 + "</td>");
+					out.println("<td>" + "-" + "</td>");
+					out.println("<td>" + Catename + "</td>");
+					out.println("<td>" + Transname + "</td>");
+
+				} else {
+					out.println("<td>" + Fuel1 + "</td>");
+					out.println("<td>" + Fuel2 + "</td>");
+					out.println("<td>" + Catename + "</td>");
+					out.println("<td>" + Transname + "</td>");
+
 				}
 
-	
 			}
-	
+
 			out.println("</table>");
-				
+
 			pstmt.close();
 			conn.close();
 
 			rs.close();
 
-		}catch(SQLException ex2) {
+		}
+
+		catch (SQLException ex2) {
 			System.err.println("sql error = " + ex2.getMessage());
 			System.exit(1);
 		}
-	  	
-		
+	%>
+	<div class="tab-pane text-style">
+		<h2>Ordering</h2>
+		<form action="printvehicleinfo.jsp" method="POST">
+			vehicle num:<input type="text" name="vnum" />
+			<hr>
+			<input type="submit" value="enter" /> <input type="hidden"
+				value="<%out.print(sql);%>" id="make" name="sql">
 
-%>
-		
 
-<div class="tab-pane text-style" >
-  <h2>Ordering</h2>
-  <form action="printvehicleinfo.jsp" method = "POST">
-   	<font size=2>Please enter the number of the vehicle you have searched for to see information on.</font>
-     vehicle num:<input type="text" name = "vnum"/> 	     
-    <hr>
-	<input type="submit" value="enter" /> 
-	<input type="hidden" value="<%out.print(sql); %>" id="make" name="sql">
-	
-  </form>   
-</div>
-
+		</form>
+	</div>
 
 </body>
 </html>

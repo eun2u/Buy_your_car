@@ -22,7 +22,7 @@
 		ResultSet rs;
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		conn = DriverManager.getConnection(url, user, pass);
-		String SearchMake=request.getParameter("mname");
+		String SearchCarname=request.getParameter("vname");
 
 		String sql = " ";
  
@@ -30,18 +30,18 @@
 			
 			conn.setAutoCommit(false);
 
-			sql = "SELECT V.Model_year, V.Mileage, V.Price, V.Vnumber, V.Make_code, V.Model_num, V.Dm_num, V.Cname1, V.Cname2, V.Engine_amount, V.Fcode1, V.Fcode2, V.Category_code, V.Tcode FROM VEHICLE V JOIN MAKE M ON V.Make_code=M.Mcode WHERE M.Mname = '"
-					+ SearchMake + "' AND V.Ac_id IS NULL AND Notopen = 1 ORDER BY Vnumber";
-
+			sql = "SELECT V.Model_year, V.Mileage, V.Price, V.Vnumber, V.Make_code, V.Model_num, V.Dm_num, V.Cname1, V.Cname2, V.Engine_amount, V.Fcode1, V.Fcode2, V.Category_code, V.Tcode, V.Ac_id FROM VEHICLE V JOIN Detailed_model D ON V.Dm_num=D.Dmnumber WHERE V.Ac_id IS NULL AND V.Notopen = 1 AND D.Dmname = '"+SearchCarname+"'";
+			
 			
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			 
 			if(!rs.next())
-				System.out.println("입력하신 제조사가 존재하지않습니다.");
+				System.out.println("입력하신 차량이름이 존재하지않습니다.");
+
 			else{
 %> 
-				<h4>----A list of the MAKE vehicle----</h4>	
+				<h4>----A list of vehicles of the Name----</h4>	
 <%	
 					out.println("<table border=\"1\">");
 					ResultSetMetaData rsmd=rs.getMetaData();
