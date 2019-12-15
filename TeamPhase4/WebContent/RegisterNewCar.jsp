@@ -6,28 +6,6 @@
 <head>
 <meta charset="EUC-KR">
 <title>Register New Car</title>
-<script type="text/javascript">
-     jQuery.jQueryAlert = function (msg) {
-         var $messageBox = $.parseHTML('<div id="alertBox"></div>');
-         $("body").append($messageBox);
- 
-         $($messageBox).dialog({
-             open: $($messageBox).append(msg),
-             title: "경고창",
-             autoOpen: true,
-             modal: true,
-             buttons: {
-                 OK: function () {
-                     $("#alertBox").dialog("close");
-                 }
-             }
-         });
-     };
- 
-     $(function () {
-         $.jQueryAlert("메세지를 입력해주세요");
-     });
-</script>
 </head>
 <body>
 	<h3>Information on a new vehicle</h3>
@@ -117,7 +95,7 @@
 					//System.out.println("색상2, 연료2: "+sql);
 				}
 			}
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql); 
 			int a = pstmt.executeUpdate();
 			conn.commit();
 			
@@ -137,6 +115,7 @@
 	%>
 	<script>
 	alert("새로운 차량이 등록되었습니다.");
+	document.location.href="index_manager.html";
 	</script>
 </body>
 </html>
