@@ -34,7 +34,7 @@
 					
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
-			
+			 
 %>
 		<h4>----A list of total vehicle----</h4>	
 <%	
