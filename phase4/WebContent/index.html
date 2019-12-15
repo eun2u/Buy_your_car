@@ -16,6 +16,9 @@
   <!-- Custom styles for this template -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
 
+   <!--  dropdown -->
+   <link rel="stylesheet" href="dropdown_styles.css">
+	
 </head>
 
 <body>
@@ -26,16 +29,26 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Customer Menu </div>
       <div class="list-group list-group-flush">
-
-        <a href="#tab1" onClick="$('#tab1').show(); $('#tab2').hide(); $('#tab3').hide(); $('#tab4').hide(); $('#tab5').hide();"
-        class="list-group-item list-group-item-action bg-light">CarOrder</a>
-        <a href="#tab2" onClick="$('#tab1').hide(); $('#tab2').show(); $('#tab3').hide(); $('#tab4').hide(); $('#tab5').hide();"
+		<div class="menubar">
+		<ul>
+			 <li><a class="list-group-item list-group-item-action bg-light">Carorder</a>
+				<ul>
+			     <li><a href="search_totalvehicle.jsp">차량 매물 전체</a></li> 
+			     <li><a href="search_make.jsp">제조사별로 차량 검색</a></li>
+			     <li><a href="">특정 조건으로 차량 검색</a></li>
+			     <li><a href="">차량이름으로 차량 검색</a></li>
+			    </ul>
+			 </li>
+		</ul>
+        </div>
+        
+        <a href="#tab2" onClick="$('#tab2').show(); $('#tab3').hide(); $('#tab4').hide(); $('#tab5').hide();"
         class="list-group-item list-group-item-action bg-light">MyOrder</a>        
-        <a href="#tab3" onClick="$('#tab1').hide(); $('#tab2').hide(); $('#tab3').show(); $('#tab4').hide(); $('#tab5').hide();" 
+        <a href="#tab3" onClick=" $('#tab2').hide(); $('#tab3').show(); $('#tab4').hide(); $('#tab5').hide();" 
         class="list-group-item list-group-item-action bg-light">ModifyInfo</a>
-        <a href="#tab4" onClick="$('#tab1').hide(); $('#tab2').hide(); $('#tab3').hide(); $('#tab4').show(); $('#tab5').hide();"
+        <a href="#tab4" onClick=" $('#tab2').hide(); $('s#tab3').hide(); $('#tab4').show(); $('#tab5').hide();"
         class="list-group-item list-group-item-action bg-light">DropAcoount</a>
-        <a href="#tab5" onClick="$('#tab1').hide(); $('#tab2').hide(); $('#tab3').hide(); $('#tab4').hide(); $('#tab5').show();"
+        <a href="#tab5" onClick=" $('#tab2').hide(); $('#tab3').hide(); $('#tab4').hide(); $('#tab5').show();"
         class="list-group-item list-group-item-astion bg-light">Logout</a>
       </div>
     </div>
@@ -48,10 +61,10 @@
         <button class="btn btn-primary" id="menu-toggle">Menu</button>        
       </nav>
 
-      <div class="container-fluid" id="tab1">
+      <div class="container-fluid" id="tab1-1">
         <h1 class="mt-5">CarOrder</h1>
         <p>  
-			  Carorder ~~  
+
 		</p>
       </div>
 
