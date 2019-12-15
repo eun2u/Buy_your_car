@@ -102,7 +102,6 @@
 			
 			pstmt.close();
 			conn.close();
-			rs.close();
 		}catch(SQLException ex2) {
 			System.err.println("sql error = " + ex2.getMessage());
 			System.exit(1);

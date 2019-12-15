@@ -25,7 +25,7 @@
 		String sql = " "; 
 
 		String loginId = request.getParameter("login-id");
-		String loginpw = request.getParameter("login-password");
+		String loginpw  = request.getParameter("login-password");
 
 		System.out.println(loginId + " " + loginpw);
 
