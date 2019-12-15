@@ -37,7 +37,7 @@
 			{
 				// VEHICLE테이블에서 그 차량의 Ac_id를 로그인한 계정의 아이디로 update
 				sql = "UPDATE VEHICLE SET Ac_id = '" + AccountID + "' WHERE Vnumber = '" + SearchVenum + "'";
-
+ 
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				conn.commit();

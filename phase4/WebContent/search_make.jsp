@@ -53,7 +53,7 @@
 					}
 					
 				String Make_name = null;
-				String Model_name = null;
+				String Model_name = null; 
 				String DM_name = null;
 				String Fuel1 = null;
 				String Fuel2 = null;
