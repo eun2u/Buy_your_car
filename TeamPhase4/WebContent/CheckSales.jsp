@@ -44,7 +44,7 @@
 			sql = "select Mname as MAKE, sum(price) as sales " + 
 					"from carorder join vehicle on vehi_number = vnumber join Make on make_code=mcode " + 
 					"group by  Mname ";
-		}
+		} 
 		System.out.println(sql);
 		
 		pstmt = conn.prepareStatement(sql);

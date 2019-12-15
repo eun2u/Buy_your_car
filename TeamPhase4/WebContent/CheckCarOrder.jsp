@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ page language="java" import="java.text.*, java.sql.*" %>
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <meta charset="EUC-KR">
 <title>Check Car Order</title>
