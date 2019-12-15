@@ -493,7 +493,7 @@
 					out.println("<td>"+ Color1+"</td>");
 					out.println("<td>"+ Color2+"</td>");
 					out.println("<td>"+ Engine_amount+"</td>");
-				
+				 
 				}
 				if (Fcode2==null){
 					out.println("<td>"+ Fuel1+"</td>");

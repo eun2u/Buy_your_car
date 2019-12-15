@@ -42,7 +42,7 @@
 			if(!rs.next())
 				System.out.println("입력하신 제조사가 존재하지않습니다.");
 			else{
-%>
+%> 
 				<h4>----A list of the MAKE vehicle----</h4>	
 <%	
 					out.println("<table border=\"1\">");
