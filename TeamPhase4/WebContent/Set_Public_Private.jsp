@@ -22,26 +22,7 @@
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		conn = DriverManager.getConnection(url, user, pass);
 
-		String Year = request.getParameter("Year");
-		String Month = request.getParameter("Month");
-		String Day = request.getParameter("Day");
-		String NewModelYear = null;
-		NewModelYear = Year + "-" + Month + "-" + Day;
-
-		String NewMileage = request.getParameter("NewMileage");
-		String NewPrice = request.getParameter("NewPrice");
-		String NewVnumber = request.getParameter("NewVnumber");
-		String NewMake = request.getParameter("NewMake");
-		String NewModel = request.getParameter("NewsModel");
-		String NewDetailed = request.getParameter("NewDetailed");
-		String NewColor1 = request.getParameter("NewColor1");
-		String NewColor2 = request.getParameter("NewColor2");
-		String Newengine = request.getParameter("Newengine");
-		String Newfuel1 = request.getParameter("Newfuel1");
-		String Newfuel2 = request.getParameter("Newfuel2");
-		String NewCate = request.getParameter("NewCate");
-		String NewTrans = request.getParameter("NewTrans");
-
+		
 		String option = request.getParameter("option");
 		String vnum = request.getParameter("vnum");
 		String sql = null;
