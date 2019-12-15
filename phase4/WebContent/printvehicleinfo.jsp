@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@ page language="java" import="java.text.*, java.sql.*"%>
+<%@ page language="java"
+	import="java.text.*, java.sql.*, java.util.Calendar, java.util.Random "%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>My order</title>
+<title>login_response</title>
 </head>
 <body>
-<%
+<div class="tab-pane text-style">
+		
+
+
+	<%
 		String serverIP = "localhost";
 		String strSID = "orcl";
 		String portNum = "1521";
@@ -18,32 +23,23 @@
 
 		Connection conn = null;
 		PreparedStatement pstmt;
-		ResultSet rs;
+		ResultSet rs = null;
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		conn = DriverManager.getConnection(url, user, pass);
 
 		String sql = " ";
- 
+
+		String SearchVenum = request.getParameter("vnum");
+
 		try {
-			
+
 			conn.setAutoCommit(false);
+			sql=request.getParameter("sql");
+			System.out.println(sql);
+		//	sql = "SELECT * FROM VEHICLE WHERE Vnumber = '" + SearchVenum + "'";
 
+			//print vehicle info
 
-			sql = "SELECT * FROM VEHICLE WHERE Ac_id IS NULL AND Notopen = 1 ORDER BY Vnumber";
-					
-			pstmt=conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
-			 
-%>
-		<h4>----A list of total vehicle----</h4>	
-<%	
-			out.println("<table border=\"1\">");
-			ResultSetMetaData rsmd=rs.getMetaData();
-			int cnt=rsmd.getColumnCount();
-			for(int i=1;i<=cnt-2;i++){
-				out.println("<th>"+ rsmd.getColumnName(i)+"</th>");
-			}
-			
 			String Make_name = null;
 			String Model_name = null;
 			String DM_name = null;
@@ -52,8 +48,19 @@
 			String Catename = null;
 			String Transname = null;
 			int i = 0;
-			
-			while(rs.next()) {
+
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			out.println("<table border=\"1\">");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int cnt = rsmd.getColumnCount();
+			//System.out.println(cnt);
+			for (i = 1; i <= cnt - 2; i++) {
+				out.println("<th>" + rsmd.getColumnName(i) + "</th>");
+			}
+
+			while (rs.next()) {
 				Date Model_year = rs.getDate(1);
 				int Mileage = rs.getInt(2);
 				int Price = rs.getInt(3);
@@ -68,8 +75,7 @@
 				String Fcode2 = rs.getString(12);
 				int Category_code = rs.getInt(13);
 				int Tcode = rs.getInt(14);
-				
-				
+
 				// Transmission
 				if (Tcode == 1)
 					Transname = "Automatic";
@@ -106,7 +112,7 @@
 				else if (Fcode1.equals("005"))
 					Fuel1 = "CNG";
 
-				if (Fcode2 !=null) {
+				if (Fcode2 != null) {
 					if (Fcode2.equals("001"))
 						Fuel2 = "Gasoline";
 					else if (Fcode2.equals("002"))
@@ -467,81 +473,64 @@
 
 				}
 
-				
+				//i++;
 
-
-
-
-				
 				out.println("<tr>");
-				out.println("<td>"+ Model_year+"</td>");
-				out.println("<td>"+ Mileage+"</td>");
-				out.println("<td>"+ Price+"</td>");
-				out.println("<td>"+ Vnumber+"</td>");
-				out.println("<td>"+ Make_name+"</td>");
-				out.println("<td>"+ Model_name+"</td>");
-				out.println("<td>"+ DM_name+"</td>");
-				
-				
-				if (Color2==null){
-					out.println("<td>"+ Color1+"</td>");
-					out.println("<td>"+ "-"+"</td>");
-					out.println("<td>"+ Engine_amount+"</td>");
-		
+				out.println("<td>" + Model_year + "</td>");
+				out.println("<td>" + Mileage + "</td>");
+				out.println("<td>" + Price + "</td>");
+				out.println("<td>" + Vnumber + "</td>");
+				out.println("<td>" + Make_name + "</td>");
+				out.println("<td>" + Model_name + "</td>");
+				out.println("<td>" + DM_name + "</td>");
+
+				if (Color2 == null) {
+					out.println("<td>" + Color1 + "</td>");
+					out.println("<td>" + "-" + "</td>");
+					out.println("<td>" + Engine_amount + "</td>");
+
+				} else {
+					out.println("<td>" + Color1 + "</td>");
+					out.println("<td>" + Color2 + "</td>");
+					out.println("<td>" + Engine_amount + "</td>");
+
 				}
-				else{
-					out.println("<td>"+ Color1+"</td>");
-					out.println("<td>"+ Color2+"</td>");
-					out.println("<td>"+ Engine_amount+"</td>");
-				
-				}
-				if (Fcode2==null){
-					out.println("<td>"+ Fuel1+"</td>");
-					out.println("<td>"+ "-"+"</td>");
-					out.println("<td>"+ Catename+"</td>");
-					out.println("<td>"+ Transname+"</td>");
-				
-				}
-				else{
-					out.println("<td>"+ Fuel1+"</td>");
-					out.println("<td>"+ Fuel2+"</td>");
-					out.println("<td>"+ Catename+"</td>");
-					out.println("<td>"+ Transname+"</td>");
-					
+				if (Fcode2 == null) {
+					out.println("<td>" + Fuel1 + "</td>");
+					out.println("<td>" + "-" + "</td>");
+					out.println("<td>" + Catename + "</td>");
+					out.println("<td>" + Transname + "</td>");
+
+				} else {
+					out.println("<td>" + Fuel1 + "</td>");
+					out.println("<td>" + Fuel2 + "</td>");
+					out.println("<td>" + Catename + "</td>");
+					out.println("<td>" + Transname + "</td>");
+
 				}
 
-	
 			}
-	
-			out.println("</table>");
-				
-			pstmt.close();
-			conn.close();
-
-			rs.close();
-
-		}catch(SQLException ex2) {
+		} catch (SQLException ex2) {
 			System.err.println("sql error = " + ex2.getMessage());
 			System.exit(1);
 		}
-	  	
-		
 
-%>
-		
-
-<div class="tab-pane text-style" >
-  <h2>Ordering</h2>
-  <form action="printvehicleinfo.jsp" method = "POST">
-   	<font size=2>Please enter the number of the vehicle you have searched for to see information on.</font>
-     vehicle num:<input type="text" name = "vnum"/> 	     
-    <hr>
-	<input type="submit" value="enter" /> 
-	<input type="hidden" value="<%out.print(sql); %>" id="make" name="sql">
+		//차량 구매할지 물어봄
+	%>
+<h2>Order Confirmation</h2>
+		<form action="ordering.jsp" method="POST">
+			loginid:<input type="text" name="loginid" /> 
+			<hr>
+			"Are you sure to buy this car?"
+			<input type="radio" name="yes_no" value="y">Yes</input>
+			 <input	type="radio" name="yes_no" value="n">No</input>
+			 <br/>
+			<input type="submit" value="enter" />
+			<br/>
+			<input type="hidden" value="<%out.print(SearchVenum); %>" id="make" name="vnum">
+		</form>
+	</div>
 	
-  </form>   
-</div>
-
-
 </body>
+
 </html>
