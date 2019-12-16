@@ -65,7 +65,28 @@
 			</script>
 			<%
 		}
-		else{ //로그인, 비번이 일치할 경우
+		else{ //로그인, 비번이 일치할 경우 -> "notopen" column 추가 먼저!
+			///////notopen 추가
+			sql ="SELECT COUNT(*) cnt FROM USER_TAB_COLUMNS WHERE TABLE_NAME = 'VEHICLE'";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			int V_colcnt = 0;
+			while(rs.next()) {
+				V_colcnt = rs.getInt(1);
+			}
+			
+			if(V_colcnt == 15)
+			{
+				sql = "ALTER TABLE VEHICLE ADD Notopen NUMBER DEFAULT 1";
+				pstmt = conn.prepareStatement(sql);
+				int a = pstmt.executeUpdate();
+				
+				conn.commit();
+				System.out.println(sql);
+				System.out.println(a+"행이 변경되었습니다.");
+			}
+			
 			sql ="SELECT * FROM ACCOUNT WHERE ID = '"+loginid+"' AND Manager = '1'";
 		
 			pstmt = conn.prepareStatement(sql);
