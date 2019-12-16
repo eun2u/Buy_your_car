@@ -24,7 +24,8 @@
 
 		String sql = " ";
 
-		String loginId = request.getParameter("login-id3");
+//		String loginId = request.getParameter("login-id3");
+		String loginId = (String)session.getAttribute("loginid"); 
 
 		
 		sql = "select count(*) " + "from account " + "where manager=1 ";
@@ -36,8 +37,13 @@
 			mgrcount = rs.getInt(1);
 
 		if (mgrcount == 0) {
-			System.out.println("관리자계정은 최소 1개 이상 있어야 합니다. ");
-			System.exit(0);
+			
+			%>
+			<script>
+				alert("관리자계정은 최소 1개 이상 있어야 합니다.");
+				document.location.href="index_manager.html";
+			</script>
+			<%
 		}
 	 
 
@@ -49,9 +55,12 @@
 		int res = pstmt.executeUpdate(sql);
 		System.out.println(sql);
 		if(res==1){
-			System.out.println("회원 탈퇴를 하였습니다.");
-			System.out.println("application을 종료합니다");
-			System.exit(0);
+			%>
+			<script>
+				alert("탈퇴 되었습니다.");
+				document.location.href="login.html";
+			</script>
+			<%
 		}
 
 		conn.commit();

@@ -519,9 +519,8 @@
 	%>
 <h2>Order Confirmation</h2>
 		<form action="ordering.jsp" method="POST">
-			loginid:<input type="text" name="loginid" /> 
 			<hr>
-			"Are you sure to buy this car?"
+			<h3>"Are you sure to buy this car?"</h3>
 			<input type="radio" name="yes_no" value="y">Yes</input>
 			 <input	type="radio" name="yes_no" value="n">No</input>
 			 <br/>

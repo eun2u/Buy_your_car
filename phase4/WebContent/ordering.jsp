@@ -27,7 +27,7 @@
 		String sql = " ";
 
 		String SearchVenum = request.getParameter("vnum");
-		String AccountID = request.getParameter("loginid");
+		String AccountID = (String)session.getAttribute("loginid"); 
 		String yesorno = request.getParameter("yes_no");
 
 		System.out.println(yesorno);
@@ -79,7 +79,13 @@
 				int res = pstmt.executeUpdate(sql);
 
 				conn.commit();
-				System.out.println("\n주문번호-" + ordernum + ": '" + SearchVenum + "'번 차량구매가 완료되었습니다.");
+				%>
+				<script>
+					alert("주문이 완료되었습니다");
+					document.location.href="index_customer.html";
+				</script>
+				<%
+			
 			}
 		} catch (SQLException ex2) {
 			System.err.println("sql error = " + ex2.getMessage());
