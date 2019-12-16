@@ -7,8 +7,12 @@
 <meta charset="EUC-KR">
 <title>My order</title>
 </head>
+
 <body>
-<%
+	
+
+
+	<%
 		String serverIP = "localhost";
 		String strSID = "orcl";
 		String portNum = "1521";
@@ -26,18 +30,19 @@
 
 		try {
 			
-			String loginId = request.getParameter("login-id2");
+			String loginId = (String)session.getAttribute("loginid"); 
 
+			
 			sql = "SELECT  ordernumber, vehi_number, orderdate " + "FROM carorder join account on id=accountid " + 
-					"WHERE id = '"+ loginId+"'";
+					"WHERE id = '"+ loginId  +"'";
 			System.out.println(sql);
 			
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			
 %>
-		<h4>----A list of your car order----</h4>	
-<%	
+	<h4>----A list of your car order----</h4>
+	<%	
 			out.println("<table border=\"1\">");
 			ResultSetMetaData rsmd=rs.getMetaData();
 			int cnt=rsmd.getColumnCount();
@@ -70,7 +75,8 @@
 
 			rs.close();
 
-		}catch(SQLException ex2) {
+		}
+		catch(SQLException ex2) {
 			System.err.println("sql error = " + ex2.getMessage());
 			System.exit(1);
 		}

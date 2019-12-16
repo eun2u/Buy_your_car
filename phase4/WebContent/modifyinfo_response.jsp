@@ -25,8 +25,8 @@
 		String sql = " ";
 
 		
-		String loginId = request.getParameter("login-id1");
-		
+		String loginId = (String)session.getAttribute("loginid"); 
+
 		  
 		String update_column = request.getParameter("info");
 		String update_value = request.getParameter("modifiedvalue");
@@ -39,8 +39,14 @@
 			System.out.println(sql);
 			pstmt=conn.prepareStatement(sql);
 			int res = pstmt.executeUpdate(sql);
-			if(res==1)
-				System.out.println("회원정보가 변경되었습니다.");
+			if(res==1){
+			%>
+				<script>
+					alert("회원정보가 변경되었습니다.");
+					document.location.href="index_customer.html";
+				</script>
+			<%
+			}
 
 			conn.commit();
 			
