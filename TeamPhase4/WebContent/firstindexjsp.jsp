@@ -65,7 +65,7 @@
 		%>
 		
    
-    
+     
     <section class="site-hero" style="background-image: url(images/car_2.jpg);" id="section-home" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row intro-text align-items-center justify-content-center">

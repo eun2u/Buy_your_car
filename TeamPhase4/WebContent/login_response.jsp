@@ -74,7 +74,7 @@
 			int V_colcnt = 0;
 			while(rs.next()) {
 				V_colcnt = rs.getInt(1);
-			}
+			} 
 			
 			if(V_colcnt == 15)
 			{
