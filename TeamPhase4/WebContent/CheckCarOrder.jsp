@@ -3,7 +3,7 @@
 <%@ page language="java" import="java.text.*, java.sql.*" %>
 <!DOCTYPE html>
 <html> 
-<head>
+<head> 
 <meta charset="EUC-KR">
 <title>Check Car Order</title>
 </head>

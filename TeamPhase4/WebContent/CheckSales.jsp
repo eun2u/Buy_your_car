@@ -6,7 +6,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Check Sales</title>
-</head>
+</head> 
 <body>
 <center>
 	<h3>Check Sales</h3>

@@ -21,7 +21,6 @@
 	ResultSet rs;
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 	conn=DriverManager.getConnection(url,user,pass);
-
 	//System.out.println("Connection success");
 	
 	
@@ -29,7 +28,6 @@
 	
 	String loginid=request.getParameter("login-id");
 	String loginpw=request.getParameter("login-password");
-
 	System.out.println(loginid +" "+ loginpw);
 	
 	String Fname=request.getParameter("firstname");
@@ -48,7 +46,6 @@
 	System.out.println("fname"+ Fname +" Lname"+ Lname+ " signupid"+ signupid + " signuppw" + signuppw + " address" +
 			address + " pnum"+ pnum+ " bday" +bday + " sex"+ sex + " job"+ job);
 	
-
 	String sql = null;
 	
 	if(loginid != null) //로그인하는 고객
@@ -84,7 +81,7 @@
 			else{ //관리자가 아닐 때(고객일 때)
 				%>
 				<script>
-				location.href="index_manager.html";
+				location.href="index_customer.html";
 				</script>
 				<%
 			}

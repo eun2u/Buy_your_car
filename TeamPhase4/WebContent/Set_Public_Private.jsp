@@ -7,7 +7,7 @@
 <meta charset="EUC-KR">
 <title>Set the car Public or Private</title>
 </head>
-<body>
+<body> 
 	<h3>Public or Private</h3>
 	<%
 		String serverIP = "localhost";

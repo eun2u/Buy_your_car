@@ -7,7 +7,7 @@
 <meta charset="EUC-KR">
 <title>ModifyVehicleInfo</title>
 </head>
-<body>
+<body> 
 	<h3>Modified vehicle information</h3>
 	<%
 		String serverIP = "localhost";

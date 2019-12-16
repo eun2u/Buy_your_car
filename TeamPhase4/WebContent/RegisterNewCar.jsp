@@ -6,7 +6,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Register New Car</title>
-</head>
+</head> 
 <body>
 	<h3>Information on a new vehicle</h3>
 	<%
