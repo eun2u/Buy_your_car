@@ -33,22 +33,23 @@
 		<ul>
 			 <li><a href="#"  class="list-group-item list-group-item-action bg-light">Carorder</a>
 				<ul>
-			     <li><a href="search_totalvehicle.jsp">차량 매물 전체</a></li>  
-			     <li><a href="#tab11" onClick="$('#tab11').show(); $('#tab12').hide(); $('#tab13').hide(); $('#tab2').hide(); $('#tab3').hide(); $('#tab4').hide(); ">
-			     		제조사별로 차량 검색</a></li>
-			     <li><a href="#tab12" onClick="$('#tab11').hide(); $('#tab12').show(); $('#tab13').hide(); $('#tab2').hide(); $('#tab3').hide(); $('#tab4').hide();">
-			     		특정 조건으로 차량 검색</a></li>
-			     <li><a href="#tab13" onClick="$('#tab11').hide(); $('#tab12').hide(); $('#tab13').show(); $('#tab2').hide(); $('#tab3').hide(); $('#tab4').hide(); ">차량이름으로 차량 검색</a></li>
+			     <li><a href="search_totalvehicle.jsp">Search Total</a></li>  
+			     <li><a href="#tab11" onClick="$('#tab11').show(); $('#tab12').hide(); $('#tab13').hide(); $('#tab3').hide(); $('#tab4').hide(); ">
+			     		Search By Make</a></li>
+			     <li><a href="#tab12" onClick="$('#tab11').hide(); $('#tab12').show(); $('#tab13').hide();  $('#tab3').hide(); $('#tab4').hide();">
+			     		Search By Condition</a></li>
+			     <li><a href="#tab13" onClick="$('#tab11').hide(); $('#tab12').hide(); $('#tab13').show();  $('#tab3').hide(); $('#tab4').hide(); ">
+			     		Search By Name</a></li>
 			    </ul>
 			 </li>
 		</ul>
         </div>
         
-        <a href="#tab2" onClick="$('#tab11').hide();  $('#tab12').hide(); $('#tab13').hide();  $('#tab2').show(); $('#tab3').hide(); $('#tab4').hide(); "
-        class="list-group-item list-group-item-action bg-light">MyOrder</a>        
-        <a href="#tab3" onClick="$('#tab11').hide();  $('#tab12').hide(); $('#tab13').hide(); $('#tab2').hide(); $('#tab3').show(); $('#tab4').hide(); " 
-        class="list-group-item list-group-item-action bg-light">ModifyInfo</a>
-        <a href="#tab4" onClick="$('#tab11').hide();  $('#tab12').hide();$('#tab13').hide();  $('#tab2').hide(); $('#tab3').hide(); $('#tab4').show(); "
+        <a href="myorder.jsp" class="list-group-item list-group-item-action bg-light">MyOrder</a>    
+            
+        <a href="#tab3" onClick="$('#tab11').hide();  $('#tab12').hide(); $('#tab13').hide();  $('#tab3').show(); $('#tab4').hide(); " 
+        class="list-group-item list-group-item-action bg-light">ModifyMyInfo</a>
+        <a href="#tab4" onClick="$('#tab11').hide();  $('#tab12').hide();$('#tab13').hide();   $('#tab3').hide(); $('#tab4').show(); "
         class="list-group-item list-group-item-action bg-light">DropAccount</a>        
         <a href="login.html" 
         class="list-group-item list-group-item-astion bg-light">Logout</a>
@@ -198,7 +199,7 @@
       </div>
 
       <div class="container-fluid" id="tab13" style="display:none;">
-        <h1 class="mt-7">Search By Make</h1>
+        <h1 class="mt-7">Search By Name</h1>
 		<form action="search_vehiclename.jsp" method="POST" >
 			Vehicle name: <input type="text" name = "vname"/>
 			<input type="submit" value="enter" />
@@ -206,18 +207,10 @@
 		 </form> 		
       </div>
 
-      <div class="container-fluid" id="tab2" style="display:none;">
-        <h1 class="mt-7">MyOrder</h1>
-        <p>  
-			  <form action="myorder.jsp" method = "POST">
-			    <hr>
-				<input type="submit" value="Submit" /> 
-			  </form>   
-		</p>
-      </div>
+
       
       <div class="container-fluid" id="tab3" style="display:none;">
-        <h1 class="mt-7">Modify Info</h1>
+        <h1 class="mt-7">Modify My Info</h1>
         <p>  
 	        <form action="modifyinfo_response.jsp" method = "POST">
 	  		<hr>
@@ -226,13 +219,16 @@
 				<option value="fname" selected >Fname</option>
 				<option value="lname">Lname</option>
 				<option value="manager">Manager(0 or 1)</option>
-				<option value="ID">Password</option>	
+				<option value="password">Password</option>	
 				<option value="address">Address</option>	
 				<option value="phonenumber">Phonenumber(010-xxxx-xxxx)</option>	
 				<option value="birthday">Birthday(yy/mm/dd)</option>	
 				<option value="sex">Sex(F or M)</option>	
 				<option value="job">Job</option>	
 			</select>
+			<br/>
+			<br/>
+			
 			Value: <input type="text" name = "modifiedvalue"/> 		
 			<input type="submit" value="Submit" />
 	    	</form>  
@@ -242,11 +238,12 @@
       </br>
       
       <div class="container-fluid" id="tab4" style="display:none;">
-        <h1 class="mt-7">DropAccount</h1>
+        <h1 class="mt-7">Drop Account</h1>
         <p>  <b>Are you sure to drop Account?</b>
 			<form action="dropaccount.jsp" method = "POST">
 		    <hr>
-			<input type="submit" value="yes" /> 
+		    Password: <input type="password" name = "password"/> 		
+			<input type="submit" value="enter" /> 
 		  </form>  
 		</p>
       </div>

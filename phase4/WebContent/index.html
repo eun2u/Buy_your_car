@@ -1,287 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Customer Window</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
-
-   <!--  dropdown -->
-   <link rel="stylesheet" href="dropdown_styles.css">
-	
+	<title>Table V04</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
-
 <body>
+	
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver1 m-b-110">
+					<div class="table100-head">
+						<table>
+							<thead>
+	
+								<tr class="row100 head">
+									<th class="cell100 column1">Class name</th>
+									<th class="cell100 column2">Type</th>
+									<th class="cell100 column3">Hours</th>
+									<th class="cell100 column4">Trainer</th>
+									<th class="cell100 column5">Spots</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
 
-  <div class="d-flex" id="wrapper">
+					<div class="table100-body js-pscroll">
+						<table>
+							<tbody>
+								<tr class="row100 body">
+									<td class="cell100 column1">Like a butterfly</td>
+									<td class="cell100 column2">Boxing</td>
+									<td class="cell100 column3">9:00 AM - 11:00 AM</td>
+									<td class="cell100 column4">Aaron Chapman</td>
+									<td class="cell100 column5">10</td>
+								</tr>
 
-    <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Customer Menu </div>
-      <div class="list-group list-group-flush">
-		<div class="menubar">
-		<ul>
-			 <li><a href="#"  class="list-group-item list-group-item-action bg-light">Carorder</a>
-				<ul>
-			     <li><a href="search_totalvehicle.jsp">차량 매물 전체</a></li>  
-			     <li><a href="#tab11" onClick="$('#tab11').show(); $('#tab12').hide(); $('#tab13').hide(); $('#tab2').hide(); $('#tab3').hide(); $('#tab4').hide(); $('#tab5').hide();">
-			     		제조사별로 차량 검색</a></li>
-			     <li><a href="#tab12" onClick="$('#tab11').hide(); $('#tab12').show(); $('#tab13').hide(); $('#tab2').hide(); $('#tab3').hide(); $('#tab4').hide(); $('#tab5').hide();">
-			     		특정 조건으로 차량 검색</a></li>
-			     <li><a href="#tab13" onClick="$('#tab11').hide(); $('#tab12').hide(); $('#tab13').show(); $('#tab2').hide(); $('#tab3').hide(); $('#tab4').hide(); $('#tab5').hide();">차량이름으로 차량 검색</a></li>
-			    </ul>
-			 </li>
-		</ul>
-        </div>
-        
-        <a href="#tab2" onClick="$('#tab11').hide();  $('#tab12').hide(); $('#tab13').hide();  $('#tab2').show(); $('#tab3').hide(); $('#tab4').hide(); $('#tab5').hide();"
-        class="list-group-item list-group-item-action bg-light">MyOrder</a>        
-        <a href="#tab3" onClick="$('#tab11').hide();  $('#tab12').hide(); $('#tab13').hide(); $('#tab2').hide(); $('#tab3').show(); $('#tab4').hide(); $('#tab5').hide();" 
-        class="list-group-item list-group-item-action bg-light">ModifyInfo</a>
-        <a href="#tab4" onClick="$('#tab11').hide();  $('#tab12').hide();$('#tab13').hide();  $('#tab2').hide(); $('#tab3').hide(); $('#tab4').show(); $('#tab5').hide();"
-        class="list-group-item list-group-item-action bg-light">DropAccount</a>        
-        <a href="#tab5" onClick="$('#tab11').hide();  $('#tab12').hide(); $('#tab13').hide();  $('#tab2').hide(); $('#tab3').hide(); $('#tab4').hide(); $('#tab5').show();"
-        class="list-group-item list-group-item-astion bg-light">Logout</a>
-      </div>
-    </div>
-    <!-- /#sidebar-wrapper -->
+								<tr class="row100 body">
+									<td class="cell100 column1">Mind & Body</td>
+									<td class="cell100 column2">Yoga</td>
+									<td class="cell100 column3">8:00 AM - 9:00 AM</td>
+									<td class="cell100 column4">Adam Stewart</td>
+									<td class="cell100 column5">15</td>
+								</tr>
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
+								<tr class="row100 body">
+									<td class="cell100 column1">Crit Cardio</td>
+									<td class="cell100 column2">Gym</td>
+									<td class="cell100 column3">9:00 AM - 10:00 AM</td>
+									<td class="cell100 column4">Aaron Chapman</td>
+									<td class="cell100 column5">10</td>
+								</tr>
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-primary" id="menu-toggle">Menu</button>        
-      </nav>
-
-      <div class="container-fluid" id="tab11" style="display:none;">
-        <h1 class="mt-7">Search By Make</h1>
-		  <form action="search_make.jsp" method = "POST">
-		   	Make name: 
-				<select name="mname">
-					<option value="Hyundai" selected>Hyundai</option>
-					<option value="Renault_Samsung">Renault_Samsung</option>
-					<option value="Kia">Kia</option>	
-					<option value="Chevrolet">Chevrolet</option>	
-					<option value="BMW">BMW</option>	
-					<option value="Lexus">Lexus</option>
-					<option value="Benz">Benz</option>
-					<option value="Volkswagen">Volkswagen</option>
-				</select>		
-				<input type="submit" value="enter" />
+							</tbody>
+						</table>
+					</div>
+				</div>
 				
-			</form>  		
-      </div>
-      
-       <div class="container-fluid" id="tab12" style="display:none;">
-        <h1 class="mt-7">Search By Condition</h1>
-			
-			<form action = "search_condition.jsp" method = "POST">
-				<br/>
-				
-				<b>Options to Search</b> 
-				<b>&emsp; &emsp;&emsp;&emsp; &emsp; &nbsp;&nbsp; Search Value</b>
-				<hr/>
-				Model Year &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp; 
-				Year <input type="text" name="modiYear" style="width:40px;height:15px;">
-				Month <select name="modiMonth">
-					<option value="null" selected>-----</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-				</select>
-				Day <input type="text" name="Day" style="width:30px;height:20px;">
-				<br />
-				Mileage &emsp; &nbsp;&nbsp;&emsp;&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
-				<input type="text" name="modiMile" style="width:100px;height:15px;"> km
-				
-				<br />
-				 Price  &emsp;&nbsp;&nbsp;&emsp;&emsp;&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
-				<input type="text" name="modiPrice" style="width:100px;height:15px;"> 
-				<br />
-				
-				Color1 / Color2  &nbsp; &nbsp; &emsp; &emsp; &emsp; &emsp;
-				<select name="modiColor1">
-					<option value="null" selected>--------</option>
-					<option value="Red">Red</option>
-					<option value="Blue">Blue</option>
-					<option value="Yellow">Yellow</option>
-					<option value="Gray">Gray</option>
-					<option value="White">White</option>
-					<option value="Black">Black</option>
-					<option value="Pink">Pink</option>
-				</select>
-			
-				 &emsp;
-				<select name="modiColor2">
-					<option value="null" selected>--------</option>
-					<option value="Red">Red</option>
-					<option value="Blue">Blue</option>
-					<option value="Yellow">Yellow</option>
-					<option value="Gray">Gray</option>
-					<option value="White">White</option>
-					<option value="Black">Black</option>
-					<option value="Pink">Pink</option>
-				</select>
-				
-				<br /> 
-				Engine&emsp;&emsp; &emsp; &emsp; &emsp; &emsp;	&emsp; &emsp;
-				<select name="modiEngine">
-					<option value="null" selected>--------</option>
-					<option value="1500">1500</option>
-					<option value="2000">2000</option>
-					<option value="3000">3000</option>
-					<option value="2500">2500</option>
-					<option value="1000">1000</option>
-				</select> cc
-				
-				<br /> 
-				Fuel1 / Fuel2  &nbsp;&nbsp; &emsp;&emsp; &emsp; &emsp; &emsp; &emsp; 
-				<select name="modiFuel1">
-					<option value="null" selected>--------</option>
-					<option value="001">Gasoline</option>
-					<option value="002">Diesel</option>
-					<option value="003">Electric</option>
-					<option value="004">LPG</option>
-					<option value="005">CNG</option>
-				</select> &emsp; <select name="modiFuel2">
-					<option value="null" selected>--------</option>
-					<option value="003">Electric</option>
-				</select> 
-				
-				<br />
-				Category&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
-				<select name="modiCate">
-					<option value="null" selected>--------</option>
-					<option value="1">Compact</option>
-					<option value="2">RV</option>
-					<option value="3">Light-Weight</option>
-					<option value="4">Midsize</option>
-					<option value="5">Full-size</option>
-					<option value="6">SUV</option>
-				</select> 
-				
-				<br />
-				Transmission &nbsp;&emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;
-				<select name="modiTrans">
-					<option value="null" selected>--------</option>
-					<option value="1">Automatic</option>
-					<option value="2">Semi-Auto</option>
-					<option value="3">Manual</option>
-					<option value="4">CVT</option>
-				</select>
-				<br /> <br />
-				
-				<input type="reset" value="Reset" 
-						style="color:white;background:black;font-size:1em; border-radius:0.5em; padding:5px 20px;">
-				<input type="submit" value="Submit" 
-						style="color:white;background:black;font-size:1em; border-radius:0.5em; padding:5px 20px;"/>
-			
-			</form>
-      </div>
-
-      <div class="container-fluid" id="tab13" style="display:none;">
-        <h1 class="mt-7">Search By Make</h1>
-		<form action="search_vehiclename.jsp" method="POST" >
-			Vehicle name: <input type="text" name = "vname"/>
-			<input type="submit" value="enter" />
 		
-		 </form> 		
-      </div>
+			</div>
+		</div>
+	</div>
 
-      <div class="container-fluid" id="tab2" style="display:none;">
-        <h1 class="mt-7">MyOrder</h1>
-        <p>  
-			  <form action="myorder.jsp" method = "POST">
-			    id:<input type="text" name = "login-id2"/> 	
-			    <hr>
-				<input type="submit" value="Submit" /> 
-			  </form>   
-		</p>
-      </div>
-      
-      <div class="container-fluid" id="tab3" style="display:none;">
-        <h1 class="mt-7">Modify Info</h1>
-        <p>  
-	        <form action="modifyinfo_response.jsp" method = "POST">
-	  		id:
-	  		<input type="text" name = "login-id1"/> 	
-	  		<hr>
-			info: 
-			<select name="info">
-				<option value="fname" selected >Fname</option>
-				<option value="lname">Lname</option>
-				<option value="mgr">Manager(0 or 1)</option>
-				<option value="pw">Password</option>	
-				<option value="address">Address</option>	
-				<option value="pnumber">Phonenumber(010-xxxx-xxxx)</option>	
-				<option value="bday">Birthday(yy/mm/dd)</option>	
-				<option value="sex">Sex(F or M)</option>	
-				<option value="job">Job</option>	
-			</select>
-			Value: <input type="text" name = "modifiedvalue"/> 		
-			<input type="submit" value="Submit" />
-	    	</form>  
-		</p>
-      </div>
-      
-      </br>
-      
-      <div class="container-fluid" id="tab4" style="display:none;">
-        <h1 class="mt-7">DropAccount</h1>
-        <p>  
-			<form action="dropaccount.jsp" method = "POST">
-		    id:<input type="text" name = "login-id3"/> 	
-		    <hr>
-			<input type="submit" value="Are you sure to drop account?" /> 
-		  </form>  
-		</p>
-      </div>
-      
-      <div class="container-fluid" id="tab5" style="display:none;">
-        <h1 class="mt-7">Logout</h1>
-        <p>  
-			logout~~
-		</p>
-      </div>
-      
-      
-      
-    </div>
-    <!-- /#page-content-wrapper -->
 
-  </div>
-  <!-- /#wrapper -->
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Menu Toggle Script -->
-  <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+			
+		
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
 
 </body>
-
 </html>

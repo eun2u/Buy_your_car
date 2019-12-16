@@ -6,11 +6,33 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>login_response</title>
+<title>Print_vehicle</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
 </head>
 <body>
-<div class="tab-pane text-style">
-		
+
+			
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver1 m-b-110">
+					<div class="table100-head">
+						<table>
+							<thead>
 
 
 	<%
@@ -34,9 +56,11 @@
 		try {
 
 			conn.setAutoCommit(false);
-			sql=request.getParameter("sql");
-			System.out.println(sql);
-		//	sql = "SELECT * FROM VEHICLE WHERE Vnumber = '" + SearchVenum + "'";
+		//	sql=request.getParameter("sql");
+		//	System.out.println(sql);
+			sql = "SELECT MODEL_YEAR as year, MILEAGE,PRICE, VNUM, MAKE_CODE as make,MODEL_NUM as model,DM_NUM as Detailed,CNAME1 as color1,CNAME2 as color2, "+
+					"ENGINE_AMOUNT as engine,FCODE1 as fuel1,FCODE2 as fuel2,CATEGORY_CODE as category,TCODE as transmission,AC_ID,NOTOPENFROM VEHICLE WHERE Vnumber = '" 
+						+ SearchVenum + "'";
 
 			//print vehicle info
 
@@ -52,13 +76,13 @@
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
-			out.println("<table border=\"1\">");
+			out.println("<tr class=\"row100 head\">");
 			ResultSetMetaData rsmd = rs.getMetaData();
-			int cnt = rsmd.getColumnCount();
-			//System.out.println(cnt);
-			for (i = 1; i <= cnt - 2; i++) {
-				out.println("<th>" + rsmd.getColumnName(i) + "</th>");
+			int cnt=rsmd.getColumnCount();
+			for( i=1;i<=cnt-2;i++){
+				out.println("<th class=\"cell100 column"+ i+ "\">"+ rsmd.getColumnName(i)+"</th>");
 			}
+			
 
 			while (rs.next()) {
 				Date Model_year = rs.getDate(1);
@@ -473,41 +497,59 @@
 
 				}
 
-				//i++;
+				%>
+					</tr>
+							</thead>
+						</table>
+					</div>
 
-				out.println("<tr>");
-				out.println("<td>" + Model_year + "</td>");
-				out.println("<td>" + Mileage + "</td>");
-				out.println("<td>" + Price + "</td>");
-				out.println("<td>" + Vnumber + "</td>");
-				out.println("<td>" + Make_name + "</td>");
-				out.println("<td>" + Model_name + "</td>");
-				out.println("<td>" + DM_name + "</td>");
+					<div class="table100-body js-pscroll">
+						<table>
+							<tbody>				
+				
+				<%
 
-				if (Color2 == null) {
-					out.println("<td>" + Color1 + "</td>");
-					out.println("<td>" + "-" + "</td>");
-					out.println("<td>" + Engine_amount + "</td>");
-
-				} else {
-					out.println("<td>" + Color1 + "</td>");
-					out.println("<td>" + Color2 + "</td>");
-					out.println("<td>" + Engine_amount + "</td>");
-
+				out.println("<tr class=\"row100 body\">");
+				out.println("<td class=\"cell100 column1\">"+ Model_year+"</td>");
+				out.println("<td class=\"cell100 column2\">"+ Mileage+"</td>");
+				out.println("<td class=\"cell100 column3\">"+ Price+"</td>");
+				out.println("<td class=\"cell100 column4\">"+ Vnumber+"</td>");
+				out.println("<td class=\"cell100 column5\">"+ Make_name+"</td>");
+				out.println("<td class=\"cell100 column6\">"+ Model_name+"</td>");
+				out.println("<td class=\"cell100 column7\">"+ DM_name+"</td>");
+				
+				
+				if (Color2==null){
+					out.println("<td class=\"cell100 column8\">"+ Color1+"</td>");
+					out.println("<td class=\"cell100 column9\">"+ "-"+"</td>");
+					out.println("<td class=\"cell100 column10\">"+ Engine_amount+"</td>");
+		
 				}
-				if (Fcode2 == null) {
-					out.println("<td>" + Fuel1 + "</td>");
-					out.println("<td>" + "-" + "</td>");
-					out.println("<td>" + Catename + "</td>");
-					out.println("<td>" + Transname + "</td>");
-
-				} else {
-					out.println("<td>" + Fuel1 + "</td>");
-					out.println("<td>" + Fuel2 + "</td>");
-					out.println("<td>" + Catename + "</td>");
-					out.println("<td>" + Transname + "</td>");
-
+				else{
+					out.println("<td class=\"cell100 column8\">"+ Color1+"</td>");
+					out.println("<td class=\"cell100 column9\">"+ Color2+"</td>");
+					out.println("<td class=\"cell100 column10\">"+ Engine_amount+"</td>");
+				 
 				}
+				if (Fcode2==null){
+					out.println("<td class=\"cell100 column11\">"+ Fuel1+ "</td>");
+					out.println("<td class=\"cell100 column12\">"+ "-"+"</td>");
+					out.println("<td class=\"cell100 column13\">"+ Catename+"</td>");
+					out.println("<td class=\"cell100 column14\">"+ Transname+"</td>");
+				
+				}
+				else{
+					out.println("<td class=\"cell100 column11\">"+ Fuel1+"</td>");
+					out.println("<td class=\"cell100 column12\">"+ Fuel2+"</td>");
+					out.println("<td class=\"cell100 column13\">"+ Catename+"</td>");
+					out.println("<td class=\"cell100 column14\">"+ Transname+"</td>");
+					
+				}
+
+				out.println("</tr>");
+
+				
+				
 
 			}
 		} catch (SQLException ex2) {
@@ -517,18 +559,50 @@
 
 		//차량 구매할지 물어봄
 	%>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+		
+			</div>
+		</div>
+	</div>
+	
+<div class="tab-pane text-style">
 <h2>Order Confirmation</h2>
 		<form action="ordering.jsp" method="POST">
 			<hr>
 			<h3>"Are you sure to buy this car?"</h3>
 			<input type="radio" name="yes_no" value="y">Yes</input>
 			 <input	type="radio" name="yes_no" value="n">No</input>
-			 <br/>
-			<input type="submit" value="enter" />
-			<br/>
+			&emsp; <input type="submit" value="enter" />
+			<hr> <hr> 
 			<input type="hidden" value="<%out.print(SearchVenum); %>" id="make" name="vnum">
 		</form>
 	</div>
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+			
+		
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
 	
 </body>
 
