@@ -22,7 +22,7 @@
 		PreparedStatement pstmt;
 		ResultSet rs = null;
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		conn = DriverManager.getConnection(url, user, pass);
+		conn = DriverManager.getConnection(url, user, pass); 
 
 		String sql = " ";
 
@@ -33,7 +33,7 @@
 		System.out.println(yesorno);
 
 		try {
-			conn.setAutoCommit(false);
+			//conn.setAutoCommit(false);
 
 			if (yesorno.equals("y")) // 사겠다!!
 			{
@@ -108,7 +108,7 @@
 					</script>
 					<%
 					
-					Thread.sleep(10000); //1000이 1초
+					Thread.sleep(3000); //1000이 1초
 					
 					conn.commit();
 

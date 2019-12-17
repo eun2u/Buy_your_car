@@ -20,7 +20,13 @@
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <body>
+<%
+String SearchCarname = request.getParameter("vname");
 
+out.println("<div style=\"text-align: center\">");
+out.println("<br /> <font size=6><b>" +SearchCarname +"'s Vehicles </b></font> <br /></div>");
+
+%>
 	<div class="limiter">
 		<div class="container-table100">
 			<div class="wrap-table100">
@@ -43,8 +49,7 @@
 										ResultSet rs;
 										Class.forName("oracle.jdbc.driver.OracleDriver");
 										conn = DriverManager.getConnection(url, user, pass);
-										String SearchCarname = request.getParameter("vname");
-
+		
 										String sql = " ";
 
 										try {
@@ -571,6 +576,9 @@
 		<div class="tab-pane text-style">
 			<h2>Ordering</h2>
 			<form action="printvehicleinfo.jsp" method="POST">
+			 <font size=2>Please enter the number of the vehicle you have searched for to see information on.</font>
+			 	 <br/>
+   				<br/>
 				vehicle num:<input type="text" name="vnum" />
 				<hr>
 				<input type="submit" value="Enter" 

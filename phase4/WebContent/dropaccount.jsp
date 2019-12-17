@@ -31,9 +31,12 @@
          if(rs.next()){
             mgr = rs.getInt(1);
          }
+         
          if (mgr == 1) //manager
          {
+        	 System.out.println("manager drop");
             sql = "SELECT * from ACCOUNT WHERE Id ='" + loginId + "' AND Password='" + outpw + "'";
+            System.out.println(sql);
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             if (!rs.next()) {
@@ -47,8 +50,11 @@
             sql = "select count(*) " + "from account " + "where manager=1 ";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
+            System.out.println(sql);
+
             int mgrcount = 0;
-            mgrcount = rs.getInt(1);
+            if(rs.next())
+       	   		mgrcount = rs.getInt(1);
             if (mgrcount == 1) {
    %>
    <script>
@@ -58,7 +64,7 @@
    <%
       }
             sql = "DELETE FROM ACCOUNT WHERE Id = '" + loginId + "' ";
-            //System.out.println(sql);
+            System.out.println(sql);
             pstmt = conn.prepareStatement(sql);
             int res = pstmt.executeUpdate(sql);
             
@@ -74,6 +80,8 @@
          } 
          else if (mgr == 0)//°í°´
          {
+        	 System.out.println("customer drop");
+             
             sql = "SELECT * from ACCOUNT WHERE Id ='" + loginId + "' AND Password='" + outpw + "'";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();

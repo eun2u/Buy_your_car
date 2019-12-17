@@ -24,6 +24,9 @@
 
 </head>
 <body>
+	<div style="text-align: center">
+		<br /> <font size=6><b>Total Vehicles</b></font> <br />
+	</div>
 <%
 		String serverIP = "localhost";
 		String strSID = "orcl";
