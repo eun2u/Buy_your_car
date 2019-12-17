@@ -185,7 +185,7 @@
 	%>
 	<script>
 	alert("차량정보가 변경되었습니다.");
-	document.location.href="index_manager.html";
+	document.location.href="index_manager.jsp";
 	</script>
 </body>
 </html>

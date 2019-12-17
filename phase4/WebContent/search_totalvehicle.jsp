@@ -587,7 +587,8 @@
    	<br/>
    	<br/>
      vehicle num:<input type="text" name = "vnum"/> &emsp;
-	<input type="submit" value="enter" /> 
+	<input type="submit" value="Enter" 
+						style="color:white;background:#6c7ae0;font-size:1em; border-radius:0.5em; padding:5px 20px;"/>
 	<input type="hidden" value="<%out.print(sql); %>" id="make" name="sql">
 	
   </form>   

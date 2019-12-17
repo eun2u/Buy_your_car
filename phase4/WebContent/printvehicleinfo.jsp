@@ -58,8 +58,8 @@
 			conn.setAutoCommit(false);
 		//	sql=request.getParameter("sql");
 		//	System.out.println(sql);
-			sql = "SELECT MODEL_YEAR as year, MILEAGE,PRICE, VNUM, MAKE_CODE as make,MODEL_NUM as model,DM_NUM as Detailed,CNAME1 as color1,CNAME2 as color2, "+
-					"ENGINE_AMOUNT as engine,FCODE1 as fuel1,FCODE2 as fuel2,CATEGORY_CODE as category,TCODE as transmission,AC_ID,NOTOPENFROM VEHICLE WHERE Vnumber = '" 
+			sql = "SELECT MODEL_YEAR as year, MILEAGE,PRICE, VNUMBER AS VNUM, MAKE_CODE as make,MODEL_NUM as model,DM_NUM as Detailed,CNAME1 as color1,CNAME2 as color2, "+
+					"ENGINE_AMOUNT as engine,FCODE1 as fuel1,FCODE2 as fuel2,CATEGORY_CODE as category,TCODE as transmission,AC_ID,NOTOPEN FROM VEHICLE WHERE Vnumber = '" 
 						+ SearchVenum + "'";
 
 			//print vehicle info
@@ -569,7 +569,8 @@
 			</div>
 		</div>
 	</div>
-	
+<center>
+
 <div class="tab-pane text-style">
 <h2>Order Confirmation</h2>
 		<form action="ordering.jsp" method="POST">
@@ -577,11 +578,14 @@
 			<h3>"Are you sure to buy this car?"</h3>
 			<input type="radio" name="yes_no" value="y">Yes</input>
 			 <input	type="radio" name="yes_no" value="n">No</input>
-			&emsp; <input type="submit" value="enter" />
-			<hr> <hr> 
+			 <input type="submit" value="Enter" 
+						style="color:white;background:#6c7ae0;font-size:1em; border-radius:0.5em; padding:5px 20px;"/>
+			<br/> <br/> 
 			<input type="hidden" value="<%out.print(SearchVenum); %>" id="make" name="vnum">
 		</form>
-	</div>
+</div>
+
+	</center>
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/bootstrap/js/popper.js"></script>

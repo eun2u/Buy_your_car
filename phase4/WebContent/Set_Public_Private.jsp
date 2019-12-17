@@ -11,10 +11,10 @@
 	<h3>Public or Private</h3>
 	<%
 		String serverIP = "localhost";
-		String strSID = "xe";
-		String portNum = "1600";
+		String strSID = "orcl";
+		String portNum = "1521";
 		String user = "project";
-		String pass = "pro";
+		String pass = "project";
 		String url = "jdbc:oracle:thin:@" + serverIP + ":" + portNum + ":" + strSID;
 		Connection conn = null;
 		PreparedStatement pstmt;
@@ -39,7 +39,7 @@
 			%>
 			<script>
 			alert("차량이 공개처리되었습니다.");
-			document.location.href="index_manager.html";
+			document.location.href="index_manager.jsp";
 			</script>
 			<%
 			
@@ -54,7 +54,7 @@
 			%>
 			<script>
 			alert("차량이 비공개처리되었습니다.");
-			document.location.href="index_manager.html";
+			document.location.href="index_manager.jsp";
 			</script>
 			<%
 		}
